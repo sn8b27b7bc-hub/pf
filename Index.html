@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Portfolio Interaction</title>
+    <style>
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: black; }
+        
+        /* 메인 컨테이너 (슬라이드 효과용) */
+        #container {
+            width: 200vw; /* 화면 두 개 너비 */
+            height: 100vh;
+            display: flex;
+            transition: transform 1s cubic-bezier(0.7, 0, 0.3, 1); /* 부드러운 슬라이딩 */
+        }
+
+        /* 1. 리스트 페이지 (캔버스 영역) */
+        #canvas-section {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+        canvas { display: block; }
+
+        /* 실제 텍스트 감지용 (눈에는 거의 안보임) */
+        .text-overlay {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            z-index: 10;
+        }
+        .project-title {
+            font-size: 80px;
+            font-weight: bold;
+            color: rgba(255, 255, 255, 0.05); /* 알파 5% */
+            cursor: pointer;
+            text-align: center;
+            transition: opacity 0.3s;
+        }
+        
+        /* 2. 상세 페이지 */
+        #detail-section {
+            width: 100vw;
+            height: 100vh;
+            background: #111;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* 화면 전환 클래스 */
+        .slide-out {
+            transform: translateX(-100vw);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="container">
+        <section id="canvas-section">
+            <canvas id="particleCanvas"></canvas>
+            <div class="text-overlay">
+                <div class="project-title" data-text="PROJECT A">PROJECT A</div>
+                <div class="project-title" data-text="PROJECT B">PROJECT B</div>
+                <div class="project-title" data-text="PROJECT C">PROJECT C</div>
+            </div>
+        </section>
+
+        <section id="detail-section">
+            <h1>Project Detail Page</h1>
+        </section>
+    </div>
+
+    <script src="script.js"></script> </body>
+</html>
